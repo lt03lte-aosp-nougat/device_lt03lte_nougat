@@ -159,7 +159,7 @@
     <bool name="config_intrusiveNotificationLed">false</bool>
 
     <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
-    <bool name="config_intrusiveBatteryLed">false</bool>
+    <!-- <bool name="config_intrusiveBatteryLed">false</bool> -->
 
 <!-- Vibrator pattern for feedback about a long screen/key press -->
     <integer-array name="config_longPressVibePattern">
@@ -224,7 +224,7 @@
             16 - App switch
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareKeys">7</integer>
+   <!-- <integer name="config_deviceHardwareKeys">7</integer> -->
 
     <!-- Configure mobile tcp buffer sizes in the form:
          rat-name:rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max
@@ -279,7 +279,7 @@
             16 - App switch
          For example, a device with Home, Back and Menu keys would set this
          config to 7. -->
-    <integer name="config_deviceHardwareKeys">7</integer>
+    <!--<integer name="config_deviceHardwareKeys">7</integer> -->
 
     <!-- enable doze powersaving mode -->
     <bool name="config_enableAutoPowerModes">true</bool>
@@ -322,10 +322,10 @@
          This needs to match the constants in
          policy/src/com/android/internal/policy/impl/PhoneWindowManager.java
     -->
-    <integer name="config_longPressOnMenuBehavior">9</integer>
+   <!--   <integer name="config_longPressOnMenuBehavior">9</integer> -->
 
     <!-- Enable blur support -->
-    <bool name="config_uiBlurEnabled">true</bool>
+   <!--  <bool name="config_uiBlurEnabled">true</bool> -->
     
     <!-- Allow screen mirroring/miracast -->
     <bool name="config_enableWifiDisplay">true</bool>
