@@ -49,6 +49,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/tablet_core_hardware.xml:system/etc/permissions/tablet_core_hardware.xml \
+    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.software.freeform_window_management.xml:system/etc/permissions/android.software.freeform_window_management.xml
 
 # Audio
@@ -130,6 +131,7 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
+    init.aosp.rc \
     init.crda.sh \
     init.qcom.rc \
     init.qcom.power.rc \
@@ -155,8 +157,14 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf
 
+# World APN list
+PRODUCT_COPY_FILES += \
+   $(LOCAL_PATH)/apns-conf.xml:system/etc/apns-conf.xml
+
 # Misc packages
 PRODUCT_PACKAGES += \
+    CellBroadcastReceiver \
+    Stk \
     e2fsck \
     mke2fs \
     tune2fs \
@@ -175,8 +183,11 @@ PRODUCT_PACKAGES += \
     charger_res_images \
     SoundRecorder \
     bash \
-#   masquerade \
-    messaging
+	ThemeInterfacer \
+	Substratum \
+    messaging \
+    LiveWallpapers \
+	LiveWallpapersPicker
     
 # Stagefright FFMPEG plugin
 PRODUCT_PACKAGES += \
@@ -188,6 +199,19 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.sf.omx-plugin=libffmpeg_omx.so \
     media.sf.extractor-plugin=libffmpeg_extractor.so
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    keyguard.no_require_sim=true \
+    ro.com.google.clientidbase=android-google \
+    ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html \
+    ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html \
+    ro.com.android.wifi-watchlist=GoogleGuest \
+    ro.setupwizard.enterprise_mode=1 \
+    ro.com.android.dateformat=MM-dd-yyyy \
+    ro.com.android.dataroaming=false
+
+# by default, do not update the recovery with system updates
+PRODUCT_PROPERTY_OVERRIDES += persist.sys.recovery_update=false
+
 # Allow lockscreen rotation
 PRODUCT_PROPERTY_OVERRIDES += \
     lockscreen.rot_override=true
@@ -197,6 +221,12 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     persist.service.adb.enable=1 \
     persist.service.debuggable=1 \
     ro.adb.secure=0
+    
+#init.d
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/sysinit:system/bin/sysinit \
+    $(LOCAL_PATH)/init.d/00banner:system/etc/init.d/00banner \
+    $(LOCAL_PATH)/init.d/90userinit:system/etc/init.d/90userinit
 
 # Common msm8974
 $(call inherit-product, device/samsung/msm8974-common/msm8974.mk)
