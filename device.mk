@@ -188,7 +188,14 @@ PRODUCT_PACKAGES += \
     messaging \
     LiveWallpapers \
 	LiveWallpapersPicker
-    
+
+# Telephony
+PRODUCT_PACKAGES += \
+    telephony-ext
+
+PRODUCT_BOOT_JARS += \
+    telephony-ext
+
 # Stagefright FFMPEG plugin
 PRODUCT_PACKAGES += \
     libffmpeg_extractor \
